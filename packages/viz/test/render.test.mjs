@@ -242,7 +242,7 @@ node a 0.375 0.25 0.75 0.5 図 solid ellipse black lightgrey
 stop
 `,
         errors: [
-          { level: "warning", message: "no value for width of non-ASCII character 229. Falling back to width of space character" }
+          { level: "warning", message: "Warning: no value for width of non-ASCII character 229. Falling back to width of space character" }
         ]
       });
     });
