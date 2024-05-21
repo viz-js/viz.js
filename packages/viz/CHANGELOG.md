@@ -1,5 +1,7 @@
 # Changelog
 
+## Unreleased
+
 ## 3.6.0
 
 * Update Expat to 2.6.2.
