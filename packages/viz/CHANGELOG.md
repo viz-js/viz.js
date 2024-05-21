@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+* Update Expat to 2.6.2.
+
 ## 3.5.0
 
 * Update Graphviz to 11.0.0.
