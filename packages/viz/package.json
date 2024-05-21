@@ -5,7 +5,7 @@
     "graphviz",
     "emscripten"
   ],
-  "version": "3.5.0-dev",
+  "version": "3.6.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mdaines/viz-js.git",
