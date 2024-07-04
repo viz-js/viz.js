@@ -10,7 +10,7 @@ describe("Viz", function() {
 
   describe("graphvizVersion", function() {
     it("returns the Graphviz version", function() {
-      assert.strictEqual(viz.graphvizVersion, "11.0.0");
+      assert.strictEqual(viz.graphvizVersion, "12.0.0");
     });
   });
 
@@ -31,7 +31,6 @@ describe("Viz", function() {
         "ismap",
         "json",
         "json0",
-        "mp",
         "pic",
         "plain",
         "plain-ext",

@@ -266,7 +266,7 @@ stop
         status: "failure",
         output: undefined,
         errors: [
-          { level: "error", message: "Format: \"invalid\" not recognized. Use one of: canon cmap cmapx cmapx_np dot dot_json eps fig gv imap imap_np ismap json json0 mp pic plain plain-ext pov ps ps2 svg svg_inline tk xdot xdot1.2 xdot1.4 xdot_json" }
+          { level: "error", message: "Format: \"invalid\" not recognized. Use one of: canon cmap cmapx cmapx_np dot dot_json eps fig gv imap imap_np ismap json json0 pic plain plain-ext pov ps ps2 svg svg_inline tk xdot xdot1.2 xdot1.4 xdot_json" }
         ]
       });
     });
