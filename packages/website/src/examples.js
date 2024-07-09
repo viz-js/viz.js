@@ -5,7 +5,8 @@ const EXAMPLES = {
 `,
   "Clusters": `digraph {
   node [shape=rect];
-  subgraph cluster1 {
+  subgraph {
+    cluster=true;
     color=blue;
     node [
       shape=ellipse,
@@ -15,7 +16,8 @@ const EXAMPLES = {
     ];
     a1 -> a2 -> a3;
   }
-  subgraph cluster2 {
+  subgraph {
+    cluster=true;
     bgcolor=lightgreen;
     node [
       shape=ellipse,
