@@ -290,7 +290,7 @@ stop
         status: "success",
         output: "graph {\n\tgraph [_background=123,\n\t\tbb=\"0,0,0,0\"\n\t];\n\tnode [label=\"\\N\"];\n}\n",
         errors: [
-          { level: "warning", message: "Could not parse \"_background\" attribute in graph %3" },
+          { level: "warning", message: "Could not parse \"_background\" attribute in graph %1" },
           { level: "warning", message: "  \"123\"" }
         ]
       });
