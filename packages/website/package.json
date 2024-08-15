@@ -15,7 +15,7 @@
     "@codemirror/state": "^6.2.1",
     "@lezer/common": "^1.0.3",
     "@viz-js/lang-dot": "1.0.4",
-    "@viz-js/viz": "3.7.0",
+    "@viz-js/viz": "3.8.0",
     "codemirror": "^6.0.1",
     "lodash-es": "^4.17.21",
     "react": "^18.3.1",

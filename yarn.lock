@@ -1968,15 +1968,10 @@
     "@lezer/highlight" "^1.1.6"
     "@lezer/xml" "^1.0.2"
 
-"@viz-js/viz@3.3.0":
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/@viz-js/viz/-/viz-3.3.0.tgz#9ef8d95ffed333344e4e585286bd3c2ed4629420"
-  integrity sha512-cWBklZ5903i90YXGy3tWo93kgxsdKhlIes0soTYscJtiTwD8vBY55TDKZPDvkXVmh842AaNxby7FDWmAPSJnQw==
-
-"@viz-js/viz@3.7.0":
-  version "3.7.0"
-  resolved "https://registry.yarnpkg.com/@viz-js/viz/-/viz-3.7.0.tgz#f8f509ff9d1067c87c678137052289db750db648"
-  integrity sha512-+nZ5LWe09ypRDk43pDU09wLW80kLAEonM7xES4s6AWiCUfAy5Vb+rxnQ3hKw79ptdaHJsyNIfwnzpEFtfMIyGA==
+"@viz-js/viz@3.8.0":
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/@viz-js/viz/-/viz-3.8.0.tgz#38ecd4280b37b06b7d3f7a805b8520d5884ee459"
+  integrity sha512-xbqbRanQCG06yfpnv2hsgX43G26q0JCSjcYSpvmUlx1VRCzA0ngi7zsPn0jW9K2ITchpjQiC1tyO6+zFgS/IyA==
 
 abab@^2.0.6:
   version "2.0.6"
