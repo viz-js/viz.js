@@ -3,6 +3,7 @@
 ## Unreleased
 
 * Update Graphviz to 12.1.0.
+* Update Emscripten SDK to 3.1.64.
 
 ## 3.7.0
 
