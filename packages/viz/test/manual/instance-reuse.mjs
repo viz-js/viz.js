@@ -31,6 +31,7 @@ const tests = [
   { label: "string", fn: viz => viz.render(dotStringify(makeObject())) },
   { label: "string with labels", fn: viz => viz.render(dotStringify(makeObjectWithLabels())) },
   { label: "string with HTML labels", fn: viz => viz.render(dotStringify(makeObjectWithHTMLLabels())) },
+  { label: "string with multiple formats", fn: viz => viz.renderFormats(dotStringify(makeObject()), ["svg", "cmapx"]) },
   { label: "object", fn: viz => viz.render(makeObject()) },
   { label: "object with labels", fn: viz => viz.render(makeObjectWithLabels()) },
   { label: "object with HTML labels", fn: viz => viz.render(makeObjectWithHTMLLabels()) },

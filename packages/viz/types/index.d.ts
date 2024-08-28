@@ -13,6 +13,7 @@ declare class Viz {
   get formats(): string[]
   get engines(): string[]
   render(input: string | Graph, options?: RenderOptions): RenderResult
+  renderFormats(input: string | Graph, formats: string[], options?: RenderOptions): MultipleRenderResult
   renderString(input: string | Graph, options?: RenderOptions): string
   renderSVGElement(input: string | Graph, options?: RenderOptions): SVGSVGElement
   renderJSON(input: string | Graph, options?: RenderOptions): object
@@ -42,6 +43,14 @@ interface SuccessResult {
 interface FailureResult {
   status: "failure"
   output: undefined
+  errors: RenderError[]
+}
+
+export type MultipleRenderResult = MultipleSuccessResult | FailureResult
+
+interface MultipleSuccessResult {
+  status: "success"
+  output: { [format: string]: string }
   errors: RenderError[]
 }
 

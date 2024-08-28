@@ -32,8 +32,8 @@ class Wrapper {
     return list;
   }
 
-  renderInput(input, options) {
-    let graphPointer, resultPointer, imageFilePaths;
+  renderInput(input, formats, options) {
+    let graphPointer, contextPointer, resultPointer, imageFilePaths;
 
     try {
       this.module["agerrMessages"] = [];
@@ -62,9 +62,13 @@ class Wrapper {
       this.module.ccall("viz_set_y_invert", "number", ["number"], [options.yInvert ? 1 : 0]);
       this.module.ccall("viz_set_reduce", "number", ["number"], [options.reduce ? 1 : 0]);
 
-      resultPointer = this.module.ccall("viz_render_graph", "number", ["number", "string", "string"], [graphPointer, options.format, options.engine]);
+      contextPointer = this.module.ccall("viz_create_context");
 
-      if (resultPointer === 0) {
+      this.module.ccall("viz_reset_errors");
+
+      let layoutError = this.module.ccall("viz_layout", "number", ["number", "number", "string"], [contextPointer, graphPointer, options.engine]);
+
+      if (layoutError !== 0) {
         return {
           status: "failure",
           output: undefined,
@@ -72,9 +76,28 @@ class Wrapper {
         };
       }
 
+      let output = {};
+
+      for (let format of formats) {
+        resultPointer = this.module.ccall("viz_render", "number", ["number", "number", "string"], [contextPointer, graphPointer, format]);
+
+        if (resultPointer === 0) {
+          return {
+            status: "failure",
+            output: undefined,
+            errors: this.#parseErrorMessages()
+          };
+        } else {
+          output[format] = this.module.UTF8ToString(resultPointer);
+
+          this.module.ccall("free", "number", ["number"], [resultPointer]);
+          resultPointer = 0;
+        }
+      }
+
       return {
         status: "success",
-        output: this.module.UTF8ToString(resultPointer),
+        output: output,
         errors: this.#parseErrorMessages()
       };
     } catch (error) {
@@ -88,8 +111,16 @@ class Wrapper {
         throw error;
       }
     } finally {
+      if (contextPointer && graphPointer) {
+        this.module.ccall("viz_free_layout", "number", ["number"], [contextPointer, graphPointer]);
+      }
+
       if (graphPointer) {
         this.module.ccall("viz_free_graph", "number", ["number"], [graphPointer]);
+      }
+
+      if (contextPointer) {
+        this.module.ccall("viz_free_context", "number", ["number"], [contextPointer]);
       }
 
       if (resultPointer) {

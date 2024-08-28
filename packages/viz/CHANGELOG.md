@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+* Add renderFormats() method.
+
+  This method accepts an array of formats to render. Using this method avoids redundant parsing and layout when rendering the same graph in multiple formats, similar to specifying multiple formats when using the Graphviz command-line.
+  
+  The return value is similar to the render() method, but the "output" value is an object keyed by format.
+  
+     const result = viz.renderFormats("digraph { a -> b [href=\"https://example.com\"] }", ["svg", "cmapx"], { engine: "neato" });
+     result.output // => { "svg": ..., "cmapx": ... }
+
 ## 3.9.0
 
 * Update Graphviz to 12.1.1.

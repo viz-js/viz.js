@@ -126,7 +126,20 @@ instance().then(viz => {
 
             <dt id="viz.Viz.render"><code><b><a href="#viz.Viz.render">render</a></b>(input: string | <a href="#viz.Graph">Graph</a>, options?: <a href="#viz.RenderOptions">RenderOptions</a>) &rarr; <a href="#viz.RenderResult">RenderResult</a></code></dt>
             <dd>
-              <p>Renders the graph described by the input and returns the result as an object. <code>input</code> may be a string in <a href="https://www.graphviz.org/doc/info/lang.html">DOT syntax</a> or a <a href="#viz.Graph">graph object</a>.</p>
+              <p>Renders the graph described by the input and returns the result as an object.</p>
+              
+              <p><code>input</code> may be a string in <a href="https://www.graphviz.org/doc/info/lang.html">DOT syntax</a> or a <a href="#viz.Graph">graph object</a>.</p>
+
+              <p>This method does not throw an error if rendering failed, including for invalid DOT syntax, but it will throw for invalid types in input or unexpected runtime errors.</p>
+            </dd>
+            
+            <dt id="viz.Viz.renderFormats"><code><b><a href="#viz.Viz.renderFormats">renderFormats</a></b>(input: string | <a href="#viz.Graph">Graph</a>, formats: string[], options?: <a href="#viz.RenderOptions">RenderOptions</a>) &rarr; <a href="#viz.MultipleRenderResult">MultipleRenderResult</a></code></dt>
+            <dd>
+              <p>Renders the graph described by the input for each format in <code>formats</code> and returns the result as an object. For a successful result, <code><a href="#viz.MultipleSuccessResult.output">output</a></code> is an object keyed by format.</p>
+              
+              <p><code>input</code> may be a string in <a href="https://www.graphviz.org/doc/info/lang.html">DOT syntax</a> or a <a href="#viz.Graph">graph object</a>.</p>
+              
+              <p>The <code><a href="#viz.RenderOptions.format">format</a></code> option is ignored.</p>
 
               <p>This method does not throw an error if rendering failed, including for invalid DOT syntax, but it will throw for invalid types in input or unexpected runtime errors.</p>
             </dd>
@@ -138,12 +151,12 @@ instance().then(viz => {
 
             <dt id="viz.Viz.renderSVGElement"><code><b><a href="#viz.Viz.renderSVGElement">renderSVGElement</a></b>(input: string | <a href="#viz.Graph">Graph</a>, options?: <a href="#viz.RenderOptions">RenderOptions</a>) &rarr; <a href="https://developer.mozilla.org/en-US/docs/Web/API/SVGSVGElement">SVGSVGElement</a></code></dt>
             <dd>
-              <p>Convenience method that renders the input, parses the output, and returns an SVG element. The <a href="#viz.RenderOptions.format">format</a> option is ignored. Throws an error if rendering failed.</p>
+              <p>Convenience method that renders the input, parses the output, and returns an SVG element. The <code><a href="#viz.RenderOptions.format">format</a></code> option is ignored. Throws an error if rendering failed.</p>
             </dd>
 
             <dt id="viz.Viz.renderJSON"><code><b><a href="#viz.Viz.renderJSON">renderJSON</a></b>(input: string | <a href="#viz.Graph">Graph</a>, options?: <a href="#viz.RenderOptions">RenderOptions</a>) &rarr; object</code></dt>
             <dd>
-              <p>Convenience method that renders the input, parses the output, and returns a JSON object. The <a href="#viz.RenderOptions.format">format</a> option is ignored. Throws an error if rendering failed.</p>
+              <p>Convenience method that renders the input, parses the output, and returns a JSON object. The <code><a href="#viz.RenderOptions.format">format</a></code> option is ignored. Throws an error if rendering failed.</p>
             </dd>
           </dl>
         </dd>
@@ -208,6 +221,11 @@ instance().then(viz => {
         <dd>
           <p>The result object returned by <code><a href="#viz.Viz.render">render</a></code>.</p>
         </dd>
+        
+        <dt id="viz.MultipleRenderResult"><code><b><a href="#viz.MultipleRenderResult">MultipleRenderResult</a></b> = <a href="#viz.MultipleSuccessResult">MultipleSuccessResult</a> | <a href="#viz.FailureResult">FailureResult</a></code></dt>
+        <dd>
+          <p>The result object returned by <code><a href="#viz.Viz.renderFormats">renderFormats</a></code>.</p>
+        </dd>
 
         <dt id="viz.SuccessResult"><code><b><a href="#viz.SuccessResult">SuccessResult</a></b></code></dt>
         <dd>
@@ -225,6 +243,28 @@ instance().then(viz => {
             </dd>
 
             <dt id="viz.SuccessResult.errors"><code><b><a href="#viz.SuccessResult.errors">errors</a></b>: <a href="#viz.RenderError">RenderError</a>[]</code></dt>
+            <dd>
+              <p></p>
+            </dd>
+          </dl>
+        </dd>
+
+        <dt id="viz.MultipleSuccessResult"><code><b><a href="#viz.MultipleSuccessResult">MultipleSuccessResult</a></b></code></dt>
+        <dd>
+          <p>Returned by <code><a href="#viz.Viz.renderFormats">renderFormats</a></code> if rendering was successful. <code><a href="#viz.MultipleSuccessResult.errors">errors</a></code> may contain warning messages even if the graph rendered successfully.</p>
+
+          <dl>
+            <dt id="viz.MultipleSuccessResult.status"><code><b><a href="#viz.MultipleSuccessResult.status">status</a></b>: "success"</code></dt>
+            <dd>
+              <p></p>
+            </dd>
+
+            <dt id="viz.MultipleSuccessResult.output"><code><b><a href="#viz.MultipleSuccessResult.output">output</a></b>: { [format: string]: string }</code></dt>
+            <dd>
+              <p></p>
+            </dd>
+
+            <dt id="viz.MultipleSuccessResult.errors"><code><b><a href="#viz.MultipleSuccessResult.errors">errors</a></b>: <a href="#viz.RenderError">RenderError</a>[]</code></dt>
             <dd>
               <p></p>
             </dd>

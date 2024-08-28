@@ -1,5 +1,5 @@
 import { instance } from "../../src/standalone.mjs";
-import { randomGraph, dotStringify } from "./utils.mjs";
+import { measure, randomGraph, dotStringify } from "./utils.mjs";
 
 const tests = [
   { nodeCount: 100, randomEdgeCount: 0 },
@@ -13,24 +13,14 @@ const tests = [
   { nodeCount: 100, randomEdgeCount: 300 }
 ];
 
+tests.forEach(test => {
+  test.input = dotStringify(randomGraph(test.nodeCount, test.randomEdgeCount));
+});
+
 const timeLimit = 5000;
 
-for (const { nodeCount, randomEdgeCount } of tests) {
+for (const { input, nodeCount, randomEdgeCount } of tests) {
   const viz = await instance();
-  const src = dotStringify(randomGraph(nodeCount, randomEdgeCount));
-
-  let callCount = 0;
-
-  const startTime = performance.now();
-
-  while (performance.now() - startTime < timeLimit) {
-    viz.render(src);
-    callCount++;
-  }
-
-  const stopTime = performance.now();
-  const duration = (stopTime - startTime) / 1000;
-  const speed = callCount / duration;
-
-  console.log(`${nodeCount} nodes, ${randomEdgeCount} edges: ${callCount} in ${duration.toFixed(2)} s, ${speed.toFixed(2)} calls/s`);
+  const result = measure(() => viz.render(input), timeLimit);
+  console.log(`${nodeCount} nodes, ${randomEdgeCount} edges: ${result}`);
 }

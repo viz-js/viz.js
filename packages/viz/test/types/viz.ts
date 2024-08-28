@@ -1,4 +1,4 @@
-import { instance, type Viz } from "@viz-js/viz";
+import { instance, type Viz, type RenderResult, type MultipleRenderResult } from "@viz-js/viz";
 
 export function myRender(viz: Viz, src: string): string {
   return viz.renderString(src, { graphAttributes: { label: "My graph" } });
@@ -10,6 +10,10 @@ instance().then(viz => {
   viz.render("digraph { a -> b }", { format: "svg" });
 
   viz.render("digraph { a -> b }", { format: "svg", engine: "dot", yInvert: false });
+
+  viz.renderFormats("digraph { a -> b }", ["svg", "cmapx"]);
+
+  viz.renderFormats("digraph { a -> b }", ["svg", "cmapx"], { engine: "dot" });
 
   viz.render("digraph { a -> b }", { nodeAttributes: { shape: "circle" } });
 
@@ -28,6 +32,13 @@ instance().then(viz => {
 
   // @ts-expect-error
   viz.render("digraph { a -> b }", { whatever: 123 });
+
+  // @ts-expect-error
+  viz.render("digraph { a -> b }", { format: ["svg"] });
+
+  let result: RenderResult = viz.render("digraph { a -> b }");
+
+  let formatsResult: MultipleRenderResult = viz.renderFormats("digraph { a -> b }", ["svg", "cmapx"]);
 
   let stringResult: string = viz.renderString("digraph { a -> b }");
 
