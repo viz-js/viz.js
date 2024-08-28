@@ -24,7 +24,8 @@
   },
   "source": [
     "src/index.html",
-    "src/api/index.html"
+    "src/api/index.html",
+    "src/sitemap.txt"
   ],
   "scripts": {
     "build": "parcel build --no-cache --no-autoinstall",
