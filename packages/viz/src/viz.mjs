@@ -17,8 +17,26 @@ class Viz {
     return this.wrapper.getPluginList("layout");
   }
 
+  renderFormats(input, formats, options = {}) {
+    return this.wrapper.renderInput(input, formats, { engine: "dot", ...options });
+  }
+
   render(input, options = {}) {
-    return this.wrapper.renderInput(input, { format: "dot", engine: "dot", ...options });
+    let format;
+
+    if (options.format === void 0) {
+      format = "dot";
+    } else {
+      format = options.format;
+    }
+
+    let result = this.wrapper.renderInput(input, [format], { engine: "dot", ...options });
+
+    if (result.status === "success") {
+      result.output = result.output[format];
+    }
+
+    return result;
   }
 
   renderString(src, options = {}) {

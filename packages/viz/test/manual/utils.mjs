@@ -1,3 +1,20 @@
+export function measure(operation, timeLimit) {
+  let callCount = 0;
+
+  const startTime = performance.now();
+
+  while (performance.now() - startTime < timeLimit) {
+    operation();
+    callCount++;
+  }
+
+  const stopTime = performance.now();
+  const duration = (stopTime - startTime) / 1000;
+  const speed = callCount / duration;
+
+  return `${callCount} in ${duration.toFixed(2)} s, ${speed.toFixed(2)} calls/s`
+}
+
 const skipQuotePattern = /^([A-Za-z_][A-Za-z_0-9]*|-?(\.[0-9]+|[0-9]+(\.[0-9]+)?))$/;
 
 function quote(value) {

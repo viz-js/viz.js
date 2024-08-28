@@ -158,48 +158,45 @@ void viz_free_graph(Agraph_t *g) {
 }
 
 EMSCRIPTEN_KEEPALIVE
-char *viz_render_graph(Agraph_t *graph, const char *format, const char *engine) {
-  GVC_t *context = NULL;
-  char *data = NULL;
-  unsigned int length = 0;
-  int layout_error = 0;
-  int render_error = 0;
+GVC_t *viz_create_context() {
+  return gvContextPlugins(lt_preloaded_symbols, 0);
+}
 
-  // Initialize context
+EMSCRIPTEN_KEEPALIVE
+void viz_free_context(GVC_t *context) {
+  gvFinalize(context);
+  gvFreeContext(context);
+}
 
-  context = gvContextPlugins(lt_preloaded_symbols, 0);
+EMSCRIPTEN_KEEPALIVE
+int viz_layout(GVC_t *context, Agraph_t *graph, const char *engine) {
+  return gvLayout(context, graph, engine);
+}
 
-  // Reset errors
+EMSCRIPTEN_KEEPALIVE
+void viz_free_layout(GVC_t *context, Agraph_t *graph) {
+  gvFreeLayout(context, graph);
+}
 
+EMSCRIPTEN_KEEPALIVE
+void viz_reset_errors() {
   agseterrf(viz_errorf);
   agseterr(AGWARN);
   agreseterrors();
+}
 
-  // Layout
+EMSCRIPTEN_KEEPALIVE
+char *viz_render(GVC_t *context, Agraph_t *graph, const char *format) {
+  char *data = NULL;
+  unsigned int length = 0;
+  int render_error = 0;
 
-  layout_error = gvLayout(context, graph, engine);
+  render_error = gvRenderData(context, graph, format, &data, &length);
 
-  // Render (if layout was successful)
-
-  if (!layout_error) {
-    render_error = gvRenderData(context, graph, format, &data, &length);
-
-    if (render_error) {
-      gvFreeRenderData(data);
-      data = NULL;
-    }
+  if (render_error) {
+    gvFreeRenderData(data);
+    data = NULL;
   }
-
-  // Free the layout and context
-
-  if (graph) {
-    gvFreeLayout(context, graph);
-  }
-
-  gvFinalize(context);
-  gvFreeContext(context);
-
-  // Return the result (if successful, the rendered graph; otherwise, null)
 
   return data;
 }
