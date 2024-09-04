@@ -5,7 +5,7 @@
     "serve": "parcel serve --no-cache --no-autoinstall index.html"
   },
   "dependencies": {
-    "@viz-js/viz": "link:../.."
+    "@viz-js/viz": "../.."
   },
   "devDependencies": {
     "assert": "^2.1.0",

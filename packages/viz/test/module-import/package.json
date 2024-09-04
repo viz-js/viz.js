@@ -2,6 +2,6 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "@viz-js/viz": "link:../.."
+    "@viz-js/viz": "../.."
   }
 }

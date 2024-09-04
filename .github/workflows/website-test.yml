@@ -25,6 +25,6 @@ jobs:
 
       - name: "Run tests"
         run: |
-          yarn install --frozen-lockfile
-          yarn test
+          npm clean-install
+          npm run test
         working-directory: packages/website

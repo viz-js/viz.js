@@ -25,14 +25,14 @@ jobs:
           node-version: "20.x"
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: npm clean-install
 
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v4
 
       - name: Build website
-        run: yarn build --public-url "${{ steps.pages.outputs.base_path }}/"
+        run: npm run build --public-url "${{ steps.pages.outputs.base_path }}/"
         timeout-minutes: 1
         working-directory: packages/website
 

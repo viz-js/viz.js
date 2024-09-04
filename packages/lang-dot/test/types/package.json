@@ -1,7 +1,7 @@
 {
   "private": true,
   "dependencies": {
-    "@viz-js/lang-dot": "link:../..",
+    "@viz-js/lang-dot": "../..",
     "typescript": "^5.1.3"
   },
   "scripts": {

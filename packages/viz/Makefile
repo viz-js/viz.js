@@ -3,7 +3,7 @@
 all: lib/viz-standalone.js lib/viz-standalone.mjs
 
 lib/viz-standalone.js lib/viz-standalone.mjs: lib/encoded.mjs lib/metadata.mjs lib/module.mjs src/viz.mjs src/standalone.mjs rollup.config.mjs
-	yarn rollup -c rollup.config.mjs
+	npx rollup -c rollup.config.mjs
 
 lib/encoded.mjs: lib/module.wasm scripts/encode-wasm.mjs
 	node scripts/encode-wasm.mjs lib/module.wasm lib/encoded.mjs

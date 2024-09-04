@@ -35,7 +35,7 @@ jobs:
 
       - name: "Build"
         run: |
-          yarn install --frozen-lockfile
+          npm clean-install
           test -f lib/module.mjs && touch lib/module.mjs
           test -f lib/module.wasm && touch lib/module.wasm
           make
@@ -64,8 +64,8 @@ jobs:
 
       - name: "Run tests"
         run: |
-          yarn install --frozen-lockfile
-          yarn test
+          npm clean-install
+          npm run test
         working-directory: packages/viz
 
   test-consume:
@@ -86,13 +86,13 @@ jobs:
 
       - name: "Run module-import test"
         run: |
-          yarn install --frozen-lockfile
+          npm clean-install
           node index.js
         working-directory: packages/viz/test/module-import
 
       - name: "Run commonjs-require test"
         run: |
-          yarn install --frozen-lockfile
+          npm clean-install
           node index.js
         working-directory: packages/viz/test/commonjs-require
 
@@ -108,11 +108,11 @@ jobs:
 
       - name: "Run yarn install in package directory"
         run: |
-          yarn install --frozen-lockfile
+          npm clean-install
         working-directory: packages/viz
 
       - name: "Run check-types"
         run: |
-          yarn install --frozen-lockfile
-          yarn check-types
+          npm clean-install
+          npm run check-types
         working-directory: packages/viz/test/types

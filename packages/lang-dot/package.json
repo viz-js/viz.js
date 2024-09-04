@@ -35,7 +35,7 @@
     "@lezer/xml": "^1.0.2"
   },
   "scripts": {
-    "build": "lezer-generator src/dot.grammar -o src/parser && yarn rollup -c",
+    "build": "lezer-generator src/dot.grammar -o src/parser && rollup -c",
     "test": "mocha test/test-*.js"
   }
 }

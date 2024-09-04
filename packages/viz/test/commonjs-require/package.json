@@ -2,6 +2,6 @@
   "private": true,
   "type": "commonjs",
   "dependencies": {
-    "@viz-js/viz": "link:../.."
+    "@viz-js/viz": "../.."
   }
 }
