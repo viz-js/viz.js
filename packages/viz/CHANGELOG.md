@@ -8,8 +8,8 @@
   
   The return value is similar to the render() method, but the "output" value is an object keyed by format.
   
-     const result = viz.renderFormats("digraph { a -> b [href=\"https://example.com\"] }", ["svg", "cmapx"], { engine: "neato" });
-     result.output // => { "svg": ..., "cmapx": ... }
+       const result = viz.renderFormats("digraph { a -> b [href=\"https://example.com\"] }", ["svg", "cmapx"], { engine: "neato" });
+       result.output // => { "svg": ..., "cmapx": ... }
 
 ## 3.9.0
 
