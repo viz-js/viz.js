@@ -1,24 +1,24 @@
-import Wrapper from "./wrapper.mjs";
+import { getGraphvizVersion, getPluginList, renderInput } from "./wrapper.mjs";
 
 class Viz {
   constructor(module) {
-    this.wrapper = new Wrapper(module);
+    this.module = module;
   }
 
   get graphvizVersion() {
-    return this.wrapper.getGraphvizVersion();
+    return getGraphvizVersion(this.module);
   }
 
   get formats() {
-    return this.wrapper.getPluginList("device");
+    return getPluginList(this.module, "device");
   }
 
   get engines() {
-    return this.wrapper.getPluginList("layout");
+    return getPluginList(this.module, "layout");
   }
 
   renderFormats(input, formats, options = {}) {
-    return this.wrapper.renderInput(input, formats, { engine: "dot", ...options });
+    return renderInput(this.module, input, formats, { engine: "dot", ...options });
   }
 
   render(input, options = {}) {
@@ -30,7 +30,7 @@ class Viz {
       format = options.format;
     }
 
-    let result = this.wrapper.renderInput(input, [format], { engine: "dot", ...options });
+    let result = renderInput(this.module, input, [format], { engine: "dot", ...options });
 
     if (result.status === "success") {
       result.output = result.output[format];
