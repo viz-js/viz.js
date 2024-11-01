@@ -1968,6 +1968,11 @@
     "@lezer/highlight" "^1.1.6"
     "@lezer/xml" "^1.0.2"
 
+"@viz-js/viz@3.10.0":
+  version "3.10.0"
+  resolved "https://registry.yarnpkg.com/@viz-js/viz/-/viz-3.10.0.tgz#192333e1b29cb07b302bfa12a056c90f2131f364"
+  integrity sha512-LnmkNuruBy2reIQBO2qPTipfSwSH7+AMeJ+Iv0y1MlY59Bc2LFPY9nyc3sB3yV5r8IojySGaiZBCs1uK8ai+rQ==
+
 "@viz-js/viz@3.8.0":
   version "3.8.0"
   resolved "https://registry.yarnpkg.com/@viz-js/viz/-/viz-3.8.0.tgz#38ecd4280b37b06b7d3f7a805b8520d5884ee459"
