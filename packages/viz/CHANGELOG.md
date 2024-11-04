@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+* Update Graphviz to 12.2.0.
+
 ## 3.10.0
 
 * Add renderFormats() method.
