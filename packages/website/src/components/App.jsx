@@ -7,6 +7,7 @@ import Editor from "./Editor.jsx";
 import OutputToolbar from "./OutputToolbar.jsx";
 import Output from "./Output.jsx";
 import Errors from "./Errors.jsx";
+import Resize from "./Resize.jsx";
 
 const worker = new ReloadablePromiseWorker(() => new Worker(new URL("../worker.js", import.meta.url), { type: "module" }));
 
@@ -28,8 +29,10 @@ export default function App({ initialSrc }) {
   const [errors, setErrors] = useState([]);
   const [zoom, setZoom] = useState("fit");
   const [isValid, setValid] = useState(false);
-  const imageZoomRef = useRef(null);
+
+  const appRef = useRef(null);
   const editorRef = useRef(null);
+  const imageZoomRef = useRef(null);
 
   function handleCopyLink() {
     copyLink(src);
@@ -48,6 +51,10 @@ export default function App({ initialSrc }) {
     editorRef.current?.setValue(example);
     setSrc(example);
     setDebouncedSrc(example);
+  }
+
+  function handleResize(width) {
+    appRef.current.style.setProperty("--editor-width", width + "px");
   }
 
   const handleSrcChangeDebounced = useMemo(() => {
@@ -88,12 +95,13 @@ export default function App({ initialSrc }) {
   const zoomEnabled = result?.format == "svg-image";
 
   return (
-    <>
+    <div id="app" ref={appRef}>
       <EditorToolbar onLoadExample={handleLoadExample} onCopyLink={handleCopyLink} />
       <Editor defaultValue={src} onChange={handleSrcChange} ref={editorRef} />
+      <Resize onResize={handleResize} />
       <OutputToolbar options={options} onOptionChange={handleOptionChange} zoomEnabled={zoomEnabled} zoom={zoom} onZoomChange={setZoom} onZoomIn={() => imageZoomRef.current?.zoomIn()} onZoomOut={() => imageZoomRef.current?.zoomOut()} />
       <Output result={result} zoom={zoom} imageZoomRef={imageZoomRef} onZoomChange={setZoom} isValid={isValid} />
       <Errors errors={errors} />
-    </>
+    </div>
   );
 }
