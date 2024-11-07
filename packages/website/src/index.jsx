@@ -6,7 +6,7 @@ import { getExample, defaultExampleName } from "./examples.js";
 
 const initialSrc = getInputFromSearch(window.location.search, getExample(defaultExampleName));
 
-const root = createRoot(document.getElementById("root"));
+const root = createRoot(document.getElementById("app"));
 root.render(
   <StrictMode>
     <App initialSrc={initialSrc} />

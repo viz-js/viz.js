@@ -17,22 +17,17 @@ body {
   grid-template-rows: max-content minmax(0, 1fr);
 }
 
-#root {
-  display: grid;
-  grid-area: app;
-}
-
 #app {
-  --editor-width: 50%;
-
+  grid-area: app;
   display: grid;
-  grid-template-areas: "editor-toolbar resize output-toolbar" "editor resize output" "editor resize errors";
-  grid-template-columns: minmax(300px, var(--editor-width)) 1px minmax(450px, 1fr);
+  grid-template-areas: "editor-toolbar output-toolbar" "editor output" "editor errors";
+  grid-template-columns: 50% 1fr;
   grid-template-rows: max-content 1fr fit-content(20%);
 }
 
 .editor {
   grid-area: editor;
+  border-right: 1px solid #ccc;
 }
 
 .cm-editor {
@@ -96,6 +91,7 @@ body {
 
 .editor-toolbar {
   grid-area: editor-toolbar;
+  border-right: 1px solid #ccc;
   justify-content: center;
 }
 
@@ -164,36 +160,21 @@ body {
     grid-template-rows: max-content 30% max-content 1fr fit-content(20%);
   }
 
+  .editor {
+    border-right: none;
+  }
+
   .output-toolbar {
     border-top: 1px solid #ccc;
+  }
+
+  .editor-toolbar {
+    border-right: none;
   }
 }
 
 @media (max-width: 450px) {
   .editor {
     font-size: 16px;
-  }
-}
-
-
-.resize {
-  grid-area: resize;
-  background: #ccc;
-  position: relative;
-  z-index: 1;
-}
-
-.resize-handle {
-  width: 7px;
-  left: -3px;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  cursor: ew-resize;
-}
-
-@media (max-width: 750px) {
-  .resize {
-    display: none;
   }
 }
