@@ -18,13 +18,13 @@ body {
 }
 
 #root {
-  display: grid;
   grid-area: app;
 }
 
 #app {
   --editor-width: 50%;
 
+  height: 100%;
   display: grid;
   grid-template-areas: "editor-toolbar resize output-toolbar" "editor resize output" "editor resize errors";
   grid-template-columns: minmax(300px, var(--editor-width)) 1px minmax(450px, 1fr);
