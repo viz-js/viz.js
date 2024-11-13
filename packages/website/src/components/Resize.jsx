@@ -7,20 +7,25 @@ export default function Resize({ onResize }) {
   function handleMouseDown(e) {
     e.preventDefault();
 
-    const rect = e.target.getBoundingClientRect();
+    const resizeRect = resizeRef.current.getBoundingClientRect();
 
     dragging = true;
-    dragOffset = Math.round(e.clientX - rect.left);
+    dragOffset = Math.round(e.clientX - resizeRect.left);
   }
 
   function handleMouseMove(e) {
     if (dragging) {
-      let width = Math.max(0, e.clientX - dragOffset);
+      const width = Math.max(0, e.clientX - dragOffset);
       onResize(width);
     }
   }
 
   function handleMouseUp() {
+    if (dragging) {
+      const resizeRect = resizeRef.current.getBoundingClientRect();
+      onResize(resizeRect.left);
+    }
+
     dragging = false;
   }
 
